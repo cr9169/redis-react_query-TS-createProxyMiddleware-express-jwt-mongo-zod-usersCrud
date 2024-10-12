@@ -40,3 +40,13 @@ export const validateRequest = (schema: AnyZodObject) => {
     req.params = parsedParams;
   });
 };
+
+/*
+This is a helper function that wraps an asynchronous route handler (fn) in a 
+promise to catch errors automatically and pass them to Express's error-handling middleware (via next).
+This avoids the need to manually add try-catch blocks to every asynchronous route handler. 
+*/
+export const asyncHandler =
+  (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
