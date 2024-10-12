@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zodMongoObjectId } from "../utils/zod";
 
-export const GroupSchema = z.object({
+const GroupSchema = z.object({
   name: z.string(),
   description: z.string().optional(),
   users: z.array(zodMongoObjectId),

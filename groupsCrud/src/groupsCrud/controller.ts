@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { asyncHandler } from "../utils/wrappers";
 import GroupsManager from "./manager";
 
-export default class groupsController {
+export default class GroupsController {
   static createGroup = asyncHandler(
     async (req: Request, res: Response, next: NextFunction) => {
       const createdGroup = await GroupsManager.createGroup(req.body);

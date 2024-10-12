@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { zodMongoObjectId } from "../utils/zod";
 
-export const UserSchema = z.object({
+const UserSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   email: z.string().email(),
