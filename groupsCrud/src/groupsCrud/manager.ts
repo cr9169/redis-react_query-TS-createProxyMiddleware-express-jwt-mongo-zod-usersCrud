@@ -2,7 +2,7 @@ import IGroup from "./interface";
 import { GroupModel } from "./model";
 
 export default class GroupsManager {
-  static async createGroup(groupDetails: IGroup) {
+  static async createGroup(groupDetails: Omit<IGroup, "_id">) {
     const existsCheck = await GroupModel.findOne({ name: groupDetails.name });
 
     if (existsCheck)
@@ -19,11 +19,11 @@ export default class GroupsManager {
   }
 
   static async deleteGroup(groupId: string) {
-    const existsCheck = await GroupModel.findOne({ id: groupId });
+    const existsCheck = await GroupModel.findOne({ _id: groupId });
 
     if (!existsCheck) throw new Error("groupsCrud: Group doesn't exist...");
 
-    const deletedGroup = await GroupModel.deleteOne({ id: groupId }).exec();
+    const deletedGroup = await GroupModel.deleteOne({ _id: groupId }).exec();
 
     if (!deletedGroup) throw new Error("groupsCrud: Couldn't delete group...");
 
@@ -31,7 +31,7 @@ export default class GroupsManager {
   }
 
   static async getGroup(groupId: string) {
-    const foundGroup = await GroupModel.findOne({ id: groupId }).exec();
+    const foundGroup = await GroupModel.findOne({ _id: groupId }).exec();
 
     if (!foundGroup) throw new Error("groupsCrud: Group doesn't exist...");
 
@@ -47,13 +47,13 @@ export default class GroupsManager {
     return foundGroups;
   }
 
-  static async updateGroup(groupId: string, groupDetails: Omit<IGroup, "id">) {
-    const existsCheck = await GroupModel.findOne({ id: groupId });
+  static async updateGroup(groupId: string, groupDetails: Omit<IGroup, "_id">) {
+    const existsCheck = await GroupModel.findOne({ _id: groupId });
 
     if (!existsCheck) throw new Error("groupsCrud: Group doesn't exist...");
 
     const updatedGroup = await GroupModel.findOneAndUpdate(
-      { id: groupId },
+      { _id: groupId },
       groupDetails,
       { new: true }
     ).exec();

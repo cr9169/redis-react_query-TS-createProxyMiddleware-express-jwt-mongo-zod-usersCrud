@@ -2,7 +2,7 @@ import IUser from "./interface";
 import { UserModel } from "./model";
 
 export default class UsersManager {
-  static async createUser(userDetails: IUser) {
+  static async createUser(userDetails: Omit<IUser, "_id">) {
     const emailCheck = await UserModel.findOne({ email: userDetails.email });
     if (emailCheck)
       throw new Error("usersCrud: This email is already in use...");
@@ -21,11 +21,11 @@ export default class UsersManager {
   }
 
   static async deleteUser(userId: string) {
-    const existsCheck = await UserModel.findOne({ id: userId });
+    const existsCheck = await UserModel.findOne({ _id: userId });
 
     if (!existsCheck) throw new Error("usersCrud: user doesn't exist...");
 
-    const deleteduser = await UserModel.deleteOne({ id: userId }).exec();
+    const deleteduser = await UserModel.deleteOne({ _id: userId }).exec();
 
     if (!deleteduser) throw new Error("usersCrud: Couldn't delete user...");
 
@@ -33,7 +33,7 @@ export default class UsersManager {
   }
 
   static async getUser(userId: string) {
-    const founduser = await UserModel.findOne({ id: userId }).exec();
+    const founduser = await UserModel.findOne({ _id: userId }).exec();
 
     if (!founduser) throw new Error("usersCrud: user doesn't exist...");
 
@@ -48,13 +48,13 @@ export default class UsersManager {
     return foundusers;
   }
 
-  static async updateUser(userId: string, userDetails: Omit<IUser, "id">) {
-    const existsCheck = await UserModel.findOne({ id: userId });
+  static async updateUser(userId: string, userDetails: Omit<IUser, "_id">) {
+    const existsCheck = await UserModel.findOne({ _id: userId });
 
     if (!existsCheck) throw new Error("usersCrud: user doesn't exist...");
 
     const updateduser = await UserModel.findOneAndUpdate(
-      { id: userId },
+      { _id: userId },
       userDetails,
       { new: true }
     ).exec();

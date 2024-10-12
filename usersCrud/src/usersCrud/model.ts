@@ -3,10 +3,6 @@ import IUser from "./interface";
 
 const UserSchema: Schema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-    },
     firstName: {
       type: String,
       required: true,
@@ -29,7 +25,8 @@ const UserSchema: Schema = new Schema(
       required: true,
     },
     groupId: {
-      type: String,
+      type: { type: mongoose.Schema.Types.ObjectId },
+      ref: "Group",
       required: false,
     },
   },

@@ -1,8 +1,10 @@
+import mongoose from "mongoose";
+
 export default interface IGroup {
-  id: string;
+  readonly _id: mongoose.Types.ObjectId;
   name: string;
   description?: string;
-  users: Array<string>;
+  users: Array<mongoose.Types.ObjectId>;
   createdAt: Date;
   updatedAt: Date;
 }

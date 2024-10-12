@@ -3,10 +3,6 @@ import IGroup from "./interface";
 
 const GroupSchema: Schema = new Schema(
   {
-    id: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       required: true,

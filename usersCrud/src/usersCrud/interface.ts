@@ -1,5 +1,7 @@
+import mongoose from "mongoose";
+
 export default interface IUser {
-  id: string;
+  readonly _id: mongoose.Types.ObjectId;
   firstName: string;
   lastName: string;
   email: string;
