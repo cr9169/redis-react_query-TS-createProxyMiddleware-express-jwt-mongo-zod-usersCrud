@@ -1,7 +1,7 @@
 Next TODO Steps:
 
 1. usersCrud, groupsCrud:
-   make server (with createMiddleWare) and index.
+   add createMiddleWare to server.
 
 2. add jwt auth with redis auth like v0 have suggested (explanation in docs).
 
