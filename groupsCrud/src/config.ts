@@ -7,7 +7,7 @@ dotenv.config();
 const config = {
   env: env.get("NODE_ENV").required().asString(),
   service: {
-    port: env.get("GROUPS_CRUD_PORT").required().asString(),
+    port: env.get("GROUPS_CRUD_PORT").required().asInt(),
     jwt_secret: {
       secret: env.get("JWT_SECRET").required().asString(),
       exp: env.get("JWT_EXP").required().asInt(),
