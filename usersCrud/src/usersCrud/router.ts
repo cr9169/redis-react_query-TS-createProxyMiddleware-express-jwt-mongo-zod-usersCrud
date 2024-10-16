@@ -3,33 +3,33 @@ import { validateRequest } from "../utils/wrappers";
 import UsersController from "./controller";
 import * as validationSchemas from "./validation";
 
-export const usersRouter = Router();
+export const UsersRouter = Router();
 
-usersRouter.post(
+UsersRouter.post(
   "/create",
   validateRequest(validationSchemas.createUserSchema),
   UsersController.createUser
 );
 
-usersRouter.delete(
+UsersRouter.delete(
   "/delete",
   validateRequest(validationSchemas.deleteUserSchema),
   UsersController.deleteUser
 );
 
-usersRouter.get(
+UsersRouter.get(
   "/get",
   validateRequest(validationSchemas.getUserSchema),
   UsersController.getUser
 );
 
-usersRouter.get(
+UsersRouter.get(
   "/get/allUsers",
   validateRequest(validationSchemas.getAllUsersSchema),
   UsersController.getAllUsers
 );
 
-usersRouter.patch(
+UsersRouter.patch(
   "/update",
   validateRequest(validationSchemas.updateUserSchema),
   UsersController.updateUser

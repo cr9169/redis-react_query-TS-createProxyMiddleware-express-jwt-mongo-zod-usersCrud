@@ -3,33 +3,33 @@ import { validateRequest } from "../utils/wrappers";
 import GroupsController from "./controller";
 import * as validationSchemas from "./validation";
 
-export const groupsRouter = Router();
+export const GroupsRouter = Router();
 
-groupsRouter.post(
+GroupsRouter.post(
   "/create",
   validateRequest(validationSchemas.createGroupSchema),
   GroupsController.createGroup
 );
 
-groupsRouter.delete(
+GroupsRouter.delete(
   "/delete",
   validateRequest(validationSchemas.deleteGroupSchema),
   GroupsController.deleteGroup
 );
 
-groupsRouter.get(
+GroupsRouter.get(
   "/get",
   validateRequest(validationSchemas.getGroupSchema),
   GroupsController.getGroup
 );
 
-groupsRouter.get(
+GroupsRouter.get(
   "/get/allGroups",
   validateRequest(validationSchemas.getAllGroupsSchema),
   GroupsController.getAllGroups
 );
 
-groupsRouter.patch(
+GroupsRouter.patch(
   "/update",
   validateRequest(validationSchemas.updateGroupSchema),
   GroupsController.updateGroup
