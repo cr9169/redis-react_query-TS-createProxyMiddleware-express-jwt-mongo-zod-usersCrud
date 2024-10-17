@@ -1,20 +1,24 @@
 import { Router } from "express";
 import { CompositorRouter } from "./compositor/router";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import config from "./config";
 
 export const appRouter = Router();
 
 appRouter.use(
   "/users",
   createProxyMiddleware({
-    target: "http://localhost:4000",
+    target: config.usersService.connectionString,
     changeOrigin: true,
   })
 );
 
 appRouter.use(
   "/groups",
-  createProxyMiddleware({ target: "http://localhost:5000", changeOrigin: true })
+  createProxyMiddleware({
+    target: config.groupsService.connectionString,
+    changeOrigin: true,
+  })
 );
 
 appRouter.use("/compositor", CompositorRouter);

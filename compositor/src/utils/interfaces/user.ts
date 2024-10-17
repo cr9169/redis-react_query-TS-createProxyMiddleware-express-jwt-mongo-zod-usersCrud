@@ -7,7 +7,7 @@ export default interface IUser {
   email: string;
   password: string;
   role: Role;
-  groupId?: string;
+  groupId?: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
